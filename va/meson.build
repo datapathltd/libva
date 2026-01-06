@@ -11,7 +11,7 @@ version_file = configure_file(
 
 libva_sources = [
   'va.c',
-  'va_compat.c',
+  #'va_compat.c',
   'va_str.c',
   'va_trace.c',
 ]
@@ -21,7 +21,7 @@ libva_headers = [
   'va_backend.h',
   'va_backend_prot.h',
   'va_backend_vpp.h',
-  'va_compat.h',
+  #'va_compat.h',
   'va_dec_hevc.h',
   'va_dec_jpeg.h',
   'va_dec_vp8.h',
@@ -61,10 +61,10 @@ libva_sym_arg = '-Wl,-version-script,' + '@0@/@1@'.format(meson.current_source_d
 
 libva_link_args = []
 libva_link_depends = []
-if cc.links('void vaCreateSurfaces_0_32_0(void) {} void vaCreateSurfaces() {}', name: '-Wl,--version-script', args: ['-shared', libva_sym_arg])
-  libva_link_args = libva_sym_arg
-  libva_link_depends = libva_sym
-endif
+#if cc.links('void vaCreateSurfaces_0_32_0(void) {} void vaCreateSurfaces() {}', name: '-Wl,--version-script', args: ['-shared', libva_sym_arg])
+#  libva_link_args = libva_sym_arg
+#  libva_link_depends = libva_sym
+#endif
 
 install_headers(libva_headers, subdir : 'va')
 
